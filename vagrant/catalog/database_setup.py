@@ -1,6 +1,5 @@
 import sys
-from sqlalchemy import
-Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String
 
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -40,7 +39,7 @@ class MenuItem(Base):
 
 ### insert at end of file ###
 
-engine = create_engine('sqlite:///restaurant.menu.db')
+engine = create_engine('sqlite:///restaurantmenu.db')
 
 Base.metadata.create_all(engine)
 
