@@ -1,3 +1,4 @@
+import os
 import sys
 from sqlalchemy import Column, ForeignKey, Integer, String
 
@@ -18,6 +19,15 @@ class Restaurant(Base):
 	name = Column(String(80), nullable = False)
 	id = Column(Integer, primary_key = True)
 
+	@property
+	def serialize(self):
+		#Returns Object data in easily serialiazable form...
+		return {
+		'name' : self.name,
+		'id' :self.id,
+		}
+
+
 class MenuItem(Base):
 	__tablename__ = 'menu_item'
 
@@ -36,7 +46,16 @@ class MenuItem(Base):
 	restaurant = relationship(Restaurant)
 
 
-
+	@property
+	def serialize(self):
+		#Returns Object data in easily serialiazable form...
+		return {
+		'name' : self.name,
+		'description' : self.description,
+		'id' : self.id,
+		'price' : self.price,
+		'course' : self.course,
+		}
 ### insert at end of file ###
 
 engine = create_engine('sqlite:///restaurantmenu.db')
